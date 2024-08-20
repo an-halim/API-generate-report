@@ -17,6 +17,19 @@ func NewWeatherHandler(
 	}
 }
 
+// ReportPDF godoc
+//
+//	@Summary		Generate a weather report in PDF format
+//	@Description	Gets weather report data based on longitude and latitude and returns a downloadable PDF file.
+//	@Tags			weather
+//	@Accept			json
+//	@Produce		application/pdf
+//	@Param			long	query		string	true	"Longitude"
+//	@Param			lat		query		string	true	"Latitude"
+//	@Success		200		{file}		application/pdf
+//	@Failure		400		{string}	map[string]interface{}	"Invalid input, longitude or latitude missing"
+//	@Failure		500		{string}	map[string]interface{}	"Internal server error"
+//	@Router			/report/pdf [get]
 func (h *WeatherHandler) ReportPDF(c *fiber.Ctx) error {
 
 	long := c.Query("long")
@@ -33,6 +46,19 @@ func (h *WeatherHandler) ReportPDF(c *fiber.Ctx) error {
 	return c.Download(data)
 }
 
+// ReportCSV godoc
+//
+//	@Summary		Generate a weather report in CSV format
+//	@Description	Gets weather report data based on longitude and latitude and returns a downloadable CSV file.
+//	@Tags			weather
+//	@Accept			json
+//	@Produce		text/csv
+//	@Param			long	query		string	true	"Longitude"
+//	@Param			lat		query		string	true	"Latitude"
+//	@Success		200		{file}		text/csv
+//	@Failure		400		{string}	map[string]interface{}	"Invalid input, longitude or latitude missing"
+//	@Failure		500		{string}	map[string]interface{}	"Internal server error"
+//	@Router			/report/csv [get]
 func (h *WeatherHandler) ReportCSV(c *fiber.Ctx) error {
 	long := c.Query("long")
 	lat := c.Query("lat")

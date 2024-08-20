@@ -1,0 +1,74 @@
+info:
+  contact: {}
+paths:
+  /report/csv:
+    get:
+      consumes:
+      - application/json
+      description: Gets weather report data based on longitude and latitude and returns
+        a downloadable CSV file.
+      parameters:
+      - description: Longitude
+        in: query
+        name: long
+        required: true
+        type: string
+      - description: Latitude
+        in: query
+        name: lat
+        required: true
+        type: string
+      produces:
+      - text/csv
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "400":
+          description: Invalid input, longitude or latitude missing
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Generate a weather report in CSV format
+      tags:
+      - weather
+  /report/pdf:
+    get:
+      consumes:
+      - application/json
+      description: Gets weather report data based on longitude and latitude and returns
+        a downloadable PDF file.
+      parameters:
+      - description: Longitude
+        in: query
+        name: long
+        required: true
+        type: string
+      - description: Latitude
+        in: query
+        name: lat
+        required: true
+        type: string
+      produces:
+      - application/pdf
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: file
+        "400":
+          description: Invalid input, longitude or latitude missing
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Generate a weather report in PDF format
+      tags:
+      - weather
+swagger: "2.0"
