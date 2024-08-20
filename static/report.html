@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Weather Report</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+			}
+			.container {
+				max-width: 800px;
+				margin: auto;
+			}
+			.header {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			.section {
+				margin-bottom: 20px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+			th,
+			td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: center;
+			}
+			th {
+				background-color: #f4f4f4;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1>Weather Report</h1>
+				<p>Location: Berlin, Germany</p>
+			</div>
+
+			<div class="section">
+				<h2>Current Weather</h2>
+				<p><strong>Time:</strong> {{.Current.Time}}</p>
+				<p><strong>Temperature:</strong> {{.Current.Temperature}} °C</p>
+				<p><strong>Wind Speed:</strong> {{.Current.WindSpeed}} km/h</p>
+			</div>
+
+			<div class="section">
+				<h2>Hourly Weather</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Time</th>
+							<th>Temperature (°C)</th>
+							<th>Relative Humidity (%)</th>
+							<th>Wind Speed (km/h)</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{range .Hourly}}
+						<tr>
+							<td>{{.Time}}</td>
+							<td>{{.Temperature}}</td>
+							<td>{{.RelativeHumidity}}</td>
+							<td>{{.WindSpeed}}</td>
+						</tr>
+						{{end}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
