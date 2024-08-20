@@ -30,7 +30,7 @@ func (h *WeatherHandler) ReportPDF(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.Download(data, "report.pdf")
+	return c.Download(data)
 }
 
 func (h *WeatherHandler) ReportCSV(c *fiber.Ctx) error {
